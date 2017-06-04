@@ -29,7 +29,7 @@
 ### 网页编码
 
 
-from baike_spider import url_manager, html_downloader, html_outputer, html_parser
+import url_manager, html_downloader, html_outputer, html_parser
 
 
 class SpiderMain(object):
@@ -50,9 +50,9 @@ class SpiderMain(object):
                 new_url = self.urls.get_new_url()
                 print 'craw %d : %s' % (count, new_url)
                 html_cont = self.downloader.download(new_url)
-                new_urls, new_data = self.parser.parse(new_url, html_cont)
+                new_urls, new_data, squares_data = self.parser.parse(new_url, html_cont)###加的 squares_data
                 self.urls.add_new_urls(new_urls)
-                self.outputer.collect_data(new_data)
+                self.outputer.collect_data(new_data, squares_data)###加的 squares_data
 
 
                 if count == 1000:
